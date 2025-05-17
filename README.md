@@ -6,7 +6,7 @@ CRMS is a web application designed to help users report crimes, find missing peo
 ---
 
 ## 🌐 Live Demo
-🔗 [View the Live Project](crime-report-system.netlify.app))
+🔗 [View the Live Project](https://crime-report-system.netlify.app/)
 
 ---
 
