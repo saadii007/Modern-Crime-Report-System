@@ -1,7 +1,7 @@
 # Crime Reporting and Management System (CRMS)
 
 ## 🚀 Project Overview
-CRMS is a web application designed to help users report crimes, find missing people, and engage with the community. It also provides data analytics for crime reports and missing person cases. The app uses Firebase for authentication and database management, and it is deployed on Netlify.
+CRMS is a web application designed to help users report crimes, find missing people, and engage with the community. It also provides data analytics for crime reports and missing person cases. The app uses Firebase for authentication and database management.
 
 ---
 
