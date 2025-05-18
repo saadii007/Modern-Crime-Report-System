@@ -25,7 +25,6 @@ CRMS is a web application designed to help users report crimes, find missing peo
 ## 🚀 Tech Stack
 - **Frontend:** React, Tailwind CSS
 - **Backend:** Firebase (Firestore, Authentication)
-- **Deployment:** Netlify
 - **Charting:** Chart.js for Data Analytics
 - **Interactive Map:** Custom Image Map
 
