@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -15,7 +14,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-blue-950 text-white px-4 py-3 flex items-center justify-between z-50 shadow-md">
+    <nav className="bg-blue-800 text-white p-4 flex items-center justify-between">
       <div className="text-2xl font-bold">
         <Link to="/" onClick={() => setMenuOpen(false)}>CRMS</Link>
       </div>
@@ -23,7 +22,7 @@ const Navbar = () => {
         {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </div>
       <div
-        className={`flex-col md:flex md:flex-row md:space-x-4 absolute md:static top-16 left-0 w-full md:w-auto bg-blue-950 md:bg-blue-950 transition-transform ${
+        className={`flex-col md:flex md:flex-row md:space-x-4 absolute md:static top-16 left-0 w-full md:w-auto bg-blue-950 md:bg-transparent transition-transform ${
           menuOpen ? "flex" : "hidden"
         }`}
       >
