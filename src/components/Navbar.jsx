@@ -15,19 +15,33 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-800 text-white p-4 flex items-center justify-between fixed w-full z-50">
+    <nav className="fixed top-0 left-0 w-full bg-blue-950 text-white px-4 py-3 flex items-center justify-between z-50 shadow-md">
       <div className="text-2xl font-bold">
         <Link to="/" onClick={() => setMenuOpen(false)}>CRMS</Link>
       </div>
       <div className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </div>
-      <div className={`md:flex md:space-x-4 ${menuOpen ? "flex flex-col bg-blue-800 w-full absolute top-14 left-0" : "hidden md:block"}`}>
-        <Link to="/" className="p-2 block text-center" onClick={() => setMenuOpen(false)}>Home</Link>
-        <Link to="/dashboard" className="p-2 block text-center" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-        <Link to="/community" className="p-2 block text-center" onClick={() => setMenuOpen(false)}>Community</Link>
-        <Link to="/map" className="p-2 block text-center" onClick={() => setMenuOpen(false)}>Map</Link>
-        <Link to="/login" className="p-2 block text-center" onClick={() => setMenuOpen(false)}>Login</Link>
+      <div
+        className={`flex-col md:flex md:flex-row md:space-x-4 absolute md:static top-16 left-0 w-full md:w-auto bg-blue-950 md:bg-blue-950 transition-transform ${
+          menuOpen ? "flex" : "hidden"
+        }`}
+      >
+        <Link className="p-2 block text-center md:inline hover:text-yellow-300 transition-colors duration-300" to="/" onClick={() => setMenuOpen(false)}>
+          <FaHome className="inline mr-1" /> Home
+        </Link>
+        <Link className="p-2 block text-center md:inline hover:text-yellow-300 transition-colors duration-300" to="/dashboard" onClick={() => setMenuOpen(false)}>
+          <FaTachometerAlt className="inline mr-1" /> Dashboard
+        </Link>
+        <Link className="p-2 block text-center md:inline hover:text-yellow-300 transition-colors duration-300" to="/community" onClick={() => setMenuOpen(false)}>
+          <FaUsers className="inline mr-1" /> Community
+        </Link>
+        <Link className="p-2 block text-center md:inline hover:text-yellow-300 transition-colors duration-300" to="/map" onClick={() => setMenuOpen(false)}>
+          <FaMapMarkedAlt className="inline mr-1" /> Map
+        </Link>
+        <Link className="p-2 block text-center md:inline hover:text-yellow-300 transition-colors duration-300" to="/login" onClick={() => setMenuOpen(false)}>
+          <FaSignInAlt className="inline mr-1" /> Login
+        </Link>
       </div>
     </nav>
   );
