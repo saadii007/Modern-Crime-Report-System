@@ -1,8 +1,25 @@
 @import "tailwindcss";
 @import 'leaflet/dist/leaflet.css';
+
 /* src/index.css */
 .active-link {
   background-color: #2563eb;
   color: #fff;
   font-weight: bold;
+}
+
+/* Custom Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+body {
+  padding-top: 60px;
 }
