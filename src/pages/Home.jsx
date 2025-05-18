@@ -11,8 +11,7 @@ const Homepage = () => {
       {/* Marquee Text */}
       <div className="bg-blue-800 text-white py-2 overflow-hidden relative w-full flex justify-center">
         <div className="animate-marquee whitespace-nowrap flex gap-10 text-lg px-4">
-          <p>🚨 Welcome to the Crime Reporting Management System (CRMS) 🚨</p>
-          <p>📢 Report Crimes, Missing People, and Stay Updated. 📢</p>
+          <p>🚨 Welcome to the Crime Reporting Management System (CRMS) 🚨  📢 Report Crimes, Missing People, and Stay Updated. 📢</p>
         </div>
       </div>
 
