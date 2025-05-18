@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const Homepage = () => {
   return (
     <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/home.jpg')" }}>
-      {/* Navbar */}
-      <Navbar />
+
 
       {/* Marquee Text */}
       <div className="bg-blue-800 text-white py-2 overflow-hidden relative w-full flex justify-center">
@@ -28,13 +26,4 @@ const Homepage = () => {
         </div>
       </main>
       
-      {/* Footer */}
-      <footer className="bg-blue-800 text-white text-center py-2 mt-4 text-sm">
-        © 2025 CRMS. All rights reserved. <br />
-        Designed for Modern Crime Reporting.
-      </footer>
-    </div>
-  );
-};
-
 export default Homepage;
