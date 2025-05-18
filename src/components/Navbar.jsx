@@ -22,7 +22,7 @@ const Navbar = () => {
         {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
       </div>
       <div
-        className={`flex-col md:flex md:flex-row md:space-x-4 absolute md:static top-16 left-0 w-full md:w-auto bg-blue-950 md:bg-transparent transition-transform ${
+        className={`flex-col md:flex md:flex-row md:space-x-4 absolute md:static top-16 left-0 w-full md:w-auto bg-blue-950 md:bg-blue-950 transition-transform ${
           menuOpen ? "flex" : "hidden"
         }`}
       >
