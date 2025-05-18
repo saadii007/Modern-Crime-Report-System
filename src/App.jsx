@@ -11,7 +11,8 @@ import ReportCrime from "./pages/ReportCrime";
 import MissingPeople from "./pages/MissingPeople";
 import Analytics from "./pages/Analytics";
 import Community from "./pages/Community";
-import Map from "./pages/Map"; // NEW
+import Map from "./pages/Map";
+import Criminals from "./pages/Criminals";
 
 function App() {
   return (
@@ -27,9 +28,10 @@ function App() {
               <Route path="reportcrime" element={<ReportCrime />} />
               <Route path="missingpeople" element={<MissingPeople />} />
               <Route path="analytics" element={<Analytics />} />
+              <Route path="criminals" element={<Criminals />} />
             </Route>
             <Route path="/community" element={<Community />} />
-            <Route path="/map" element={<Map />} /> {/* NEW */}
+            <Route path="/map" element={<Map />} />
           </Routes>
         </main>
       </div>
