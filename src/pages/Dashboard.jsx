@@ -1,4 +1,3 @@
-// src/pages/Dashboard.jsx
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate, Outlet, useLocation } from "react-router-dom";
 import { db, auth } from "../firebase";
@@ -76,7 +75,8 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="flex-grow p-6 bg-gray-100 overflow-auto relative">
-        {isOverview ? (
+        {/* Overview Content */}
+        {isOverview && (
           <>
             <h2 className="text-3xl font-bold mb-4">Dashboard Overview</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -146,13 +146,14 @@ const Dashboard = () => {
               </tbody>
             </table>
           </>
-        ) : (
-          <Outlet />
         )}
 
-        {/* Popup Modal with Proper Blur */}
+        {/* Nested route content here */}
+        {!isOverview && <Outlet />}
+
+        {/* Popup Modal */}
         {selectedRecord && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center z-50">
+            <div className="fixed inset-0 backdrop-blur-sm bg-white/10 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded shadow-lg relative max-w-md w-full">
               <h3 className="font-bold text-lg mb-2">Details</h3>
               <p><strong>Title/Name:</strong> {selectedRecord.title || selectedRecord.name}</p>
