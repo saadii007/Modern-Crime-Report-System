@@ -42,7 +42,6 @@ const Community = () => {
     }
   };
 
-  // Scroll ONLY inside chat, not the page
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -103,3 +102,4 @@ const Community = () => {
 };
 
 export default Community;
+
