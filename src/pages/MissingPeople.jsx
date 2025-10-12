@@ -1,47 +1,84 @@
-// src/pages/MissingPeople.jsx
 import React, { useState } from "react";
-import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { db, auth } from "../firebase";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const MissingPeople = () => {
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
   const [lastSeen, setLastSeen] = useState("");
   const [dateMissing, setDateMissing] = useState("");
   const [description, setDescription] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const user = auth.currentUser;
+    if (!user) {
+      setMessage("You must be logged in to report a missing person.");
+      return;
+    }
+
     try {
       await addDoc(collection(db, "missing_people"), {
         name,
-        age,
         last_seen: lastSeen,
         date_missing: dateMissing,
         description,
+        reportedBy: user.email, // ✅ new field
+        createdAt: serverTimestamp(),
       });
-      alert("Missing person report submitted successfully!");
+
+      setMessage("✅ Missing person reported successfully!");
       setName("");
-      setAge("");
       setLastSeen("");
       setDateMissing("");
       setDescription("");
     } catch (error) {
-      console.error("Error adding document: ", error);
-      alert("Failed to submit report. Please try again.");
+      setMessage("❌ Failed to report. Please try again.");
     }
   };
 
   return (
-    <div className="p-8">
-      <h2 className="text-2xl font-bold mb-4">Report a Missing Person</h2>
+    <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
+      <h2 className="text-2xl font-bold mb-4">Report Missing Person</h2>
+      {message && <p className="text-center text-blue-600 mb-4">{message}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
-        <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className="w-full p-3 border rounded" required />
-        <input type="number" placeholder="Age" value={age} onChange={(e) => setAge(e.target.value)} className="w-full p-3 border rounded" required />
-        <input type="text" placeholder="Last Seen Location" value={lastSeen} onChange={(e) => setLastSeen(e.target.value)} className="w-full p-3 border rounded" required />
-        <input type="date" value={dateMissing} onChange={(e) => setDateMissing(e.target.value)} className="w-full p-3 border rounded" required />
-        <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="w-full p-3 border rounded" required></textarea>
-        <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition">Submit Report</button>
+        <input
+          type="text"
+          className="w-full border p-2 rounded"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          className="w-full border p-2 rounded"
+          placeholder="Last Seen Location"
+          value={lastSeen}
+          onChange={(e) => setLastSeen(e.target.value)}
+          required
+        />
+        <input
+          type="date"
+          className="w-full border p-2 rounded"
+          value={dateMissing}
+          onChange={(e) => setDateMissing(e.target.value)}
+          required
+        />
+        <textarea
+          className="w-full border p-2 rounded"
+          placeholder="Description or Additional Info"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
