@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Homepage = () => {
+  // Animated counter logic
+  const [stats, setStats] = useState({ reports: 0, missing: 0, cities: 0 });
+
+  useEffect(() => {
+    let reports = 0;
+    let missing = 0;
+    let cities = 0;
+
+    const interval = setInterval(() => {
+      reports += 5;
+      missing += 2;
+      cities += 1;
+
+      if (reports >= 100 && missing >= 20 && cities >= 20) {
+        reports = 100;
+        missing = 20;
+        cities = 20;
+        clearInterval(interval);
+      }
+
+      setStats({ reports, missing, cities });
+    }, 30);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       className="relative min-h-screen bg-cover bg-center"
@@ -22,7 +48,7 @@ const Homepage = () => {
       {/* Main Content */}
       <main className="flex flex-col items-center justify-center text-white px-4 py-10 space-y-10">
         {/* Intro Section */}
-        <div className="bg-black bg-opacity-60 p-8 rounded-xl shadow-lg max-w-20xl text-center">
+        <div className="bg-black bg-opacity-60 p-8 rounded-xl shadow-lg max-w-8xl text-center">
           <h1 className="text-4xl font-bold mb-4">Welcome to CRMS</h1>
           <p className="text-lg mb-6">
             The ultimate platform for reporting crimes, locating missing persons, and accessing
@@ -36,9 +62,9 @@ const Homepage = () => {
           </Link>
         </div>
 
-        {/* Transparent Info Cards */}
+        {/*Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full px-4">
-          <div className="bg-gray-500 bg-opacity-60 p-8 rounded-xl shadow-lg max-w-2xl text-center hover:scale-105 transition duration-300">
+          <div className="bg-white/20 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/30 text-center hover:scale-105 transition duration-300">
             <h3 className="text-2xl font-semibold mb-3">🕵️ Report a Crime</h3>
             <p className="text-sm mb-4">
               Submit detailed crime reports quickly and securely. Help authorities maintain law and
@@ -65,7 +91,7 @@ const Homepage = () => {
             </Link>
           </div>
 
-          <div className="bg-gray-500 bg-opacity-60 p-8 rounded-xl shadow-lg max-w-2xl text-center hover:scale-105 transition duration-300">
+          <div className="bg-white/20 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/30 text-center hover:scale-105 transition duration-300">
             <h3 className="text-2xl font-semibold mb-3">📊 Analytics & Insights</h3>
             <p className="text-sm mb-4">
               Gain insight into crime trends, hotspots, and missing reports with live analytics.
@@ -79,11 +105,46 @@ const Homepage = () => {
           </div>
         </div>
 
+        {/* Animated Stats Section */}
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg p-8 text-center max-w-5xl w-full">
+          <h2 className="text-2xl font-bold mb-6">Impact So Far</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-bold text-yellow-300 transition-all">
+                {stats.reports}+
+              </span>
+              <p className="mt-2 text-sm text-gray-200">Reports Filed</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-bold text-green-300 transition-all">
+                {stats.missing}+
+              </span>
+              <p className="mt-2 text-sm text-gray-200">Missing People Found</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="text-5xl font-bold text-blue-300 transition-all">
+                {stats.cities}+
+              </span>
+              <p className="mt-2 text-sm text-gray-200">Cities Connected</p>
+            </div>
+          </div>
+        </div>
+
         {/* Awareness Video Section */}
         <div className="max-w-4xl w-full bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20 text-center">
           <h2 className="text-2xl font-bold mb-4">🎥 Learn About Cyber Crimes</h2>
           <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg">
-<iframe width="850" height="500" src="https://www.youtube.com/embed/3N-y_3X-PD0?si=9vXH66l6IXixvxcj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe
+            width="850"
+            height="500"
+            src="https://www.youtube.com/embed/3N-y_3X-PD0?si=9vXH66l6IXixvxcj"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+              
+            </iframe>
           </div>
         </div>
 
